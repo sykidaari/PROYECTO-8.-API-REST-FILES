@@ -39,6 +39,16 @@ getBrandById = async (req, res) => {
 
     const brand = await Brand.findById(id);
 
+    if (!brand) {
+      return handleError({
+        res,
+        error: new Error('Brand not found'),
+        reqType: 'GET',
+        controllerName: 'getBrandById',
+        action: 'check if brand exists in DB'
+      });
+    }
+
     return res.status(200).json(brand);
   } catch (error) {
     handleError({
@@ -56,7 +66,10 @@ const postBrand = async (req, res) => {
     const newBrand = new Brand(req.body);
     const savedBrand = await newBrand.save();
 
-    return res.status(200).json(savedBrand);
+    return res.status(201).json({
+      message: 'Brand posted successfully',
+      brand: savedBrand
+    });
   } catch (error) {
     handleError({
       res,
@@ -68,4 +81,71 @@ const postBrand = async (req, res) => {
   }
 };
 
-module.exports = { getBrands, getBrandById, postBrand };
+const putBrand = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const existingBrand = await Brand.findById(id);
+    if (!existingBrand) {
+      return handleError({
+        res,
+        error: new Error('brand does not exist in DB'),
+        reqType: 'PUT',
+        controllerName: 'putBrand',
+        action: 'check if brand exists in DB'
+      });
+    }
+
+    const updatedBrand = await Brand.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true
+    });
+
+    return res.status(200).json({
+      message: 'Brand updated successfully',
+      brand: updatedBrand
+    });
+  } catch (error) {
+    handleError({
+      res,
+      error,
+      reqType: 'PUT',
+      controllerName: 'putBrand',
+      action: 'update brand in DB'
+    });
+  }
+};
+
+const deleteBrand = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const existingBrand = await Brand.findById(id);
+    if (!existingBrand) {
+      return handleError({
+        res,
+        error: new Error('brand does not exist in DB'),
+        reqType: 'DELETE',
+        controllerName: 'deleteBrand',
+        action: 'check if brand exists in DB'
+      });
+    }
+
+    const deletedBrand = await Brand.findByIdAndDelete(id);
+
+    return res.status(200).json({
+      message: 'Brand deleted successfully',
+      brand: deletedBrand
+    });
+  } catch (error) {
+    handleError({
+      res,
+      error,
+      reqType: 'DELETE',
+      controllerName: 'deleteBrand',
+      action: 'delete brand in DB'
+    });
+  }
+};
+
+module.exports = { getBrands, getBrandById, postBrand, putBrand, deleteBrand };
