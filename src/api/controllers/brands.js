@@ -10,7 +10,7 @@ const getBrands = async (req, res) => {
     if (tier && !validTiers.includes(tier)) {
       return handleError({
         res,
-        error: new Error('Invalid tier in req.query'),
+        error: new Error('invalid tier in req.query'),
         reqType: 'GET',
         controllerName: 'getBrands',
         action: 'validate tier'
@@ -42,7 +42,7 @@ getBrandById = async (req, res) => {
     if (!brand) {
       return handleError({
         res,
-        error: new Error('Brand not found'),
+        error: new Error('brand not found'),
         reqType: 'GET',
         controllerName: 'getBrandById',
         action: 'check if brand exists in DB'
@@ -67,7 +67,7 @@ const postBrand = async (req, res) => {
     const savedBrand = await newBrand.save();
 
     return res.status(201).json({
-      message: 'Brand posted successfully',
+      message: 'brand posted successfully',
       brand: savedBrand
     });
   } catch (error) {
@@ -85,8 +85,8 @@ const putBrand = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const existingBrand = await Brand.findById(id);
-    if (!existingBrand) {
+    const brand = await Brand.findById(id);
+    if (!brand) {
       return handleError({
         res,
         error: new Error('brand does not exist in DB'),
@@ -102,7 +102,7 @@ const putBrand = async (req, res) => {
     });
 
     return res.status(200).json({
-      message: 'Brand updated successfully',
+      message: 'brand updated successfully',
       brand: updatedBrand
     });
   } catch (error) {
@@ -120,8 +120,8 @@ const deleteBrand = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const existingBrand = await Brand.findById(id);
-    if (!existingBrand) {
+    const brand = await Brand.findById(id);
+    if (!brand) {
       return handleError({
         res,
         error: new Error('brand does not exist in DB'),
@@ -134,7 +134,7 @@ const deleteBrand = async (req, res) => {
     const deletedBrand = await Brand.findByIdAndDelete(id);
 
     return res.status(200).json({
-      message: 'Brand deleted successfully',
+      message: 'brand deleted successfully',
       brand: deletedBrand
     });
   } catch (error) {

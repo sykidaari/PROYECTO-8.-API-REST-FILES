@@ -27,10 +27,7 @@ const productSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'brands',
       required: true
-    },
-
-    price: { type: Number, required: true },
-    inStock: { type: Boolean, default: false }
+    }
   },
   { timestamps: true, collection: 'products' }
 );
