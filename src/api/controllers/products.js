@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const handleError = require('../../utils/errorHandler');
 const validateProductQuery = require('../../utils/productQueryValidator');
 const Brand = require('../models/brand');
@@ -81,6 +82,27 @@ const getProductsByAnimalType = async (req, res) => {
 const getProductsByBrand = async (req, res) => {
   try {
     const { brandId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(brandId)) {
+      return handleError({
+        res,
+        error: new Error('invalid brandId format'),
+        reqType: 'GET',
+        controllerName: 'getProductsByBrand',
+        action: 'validate brandId format'
+      });
+    }
+
+    const brandExists = await Brand.findById(brandId);
+    if (!brandExists) {
+      return handleError({
+        res,
+        error: new Error('brand not found'),
+        reqType: 'GET',
+        controllerName: 'getProductsByBrand',
+        action: 'check if brand exists in DB'
+      });
+    }
     const filter = { brand: brandId };
 
     const productQuery = validateProductQuery({
