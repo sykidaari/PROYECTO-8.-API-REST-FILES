@@ -27,7 +27,8 @@ const productSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'brands',
       required: true
-    }
+    },
+    img: { type: String, required: true }
   },
   { timestamps: true, collection: 'products' }
 );

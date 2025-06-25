@@ -1,3 +1,4 @@
+const deleteCloudinaryImg = require('../../utils/cloudinaryImgDeleter');
 const handleError = require('../../utils/errorHandler');
 const Brand = require('../models/brand');
 
@@ -33,7 +34,7 @@ const getBrands = async (req, res) => {
   }
 };
 
-getBrandById = async (req, res) => {
+const getBrandById = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -63,7 +64,18 @@ getBrandById = async (req, res) => {
 
 const postBrand = async (req, res) => {
   try {
-    const newBrand = new Brand(req.body);
+    if (!req.file) {
+      return handleError({
+        res,
+        error: new Error('img is required'),
+        reqType: 'POST',
+        controllerName: 'postBrand',
+        action: 'check if file was uploaded'
+      });
+    }
+
+    const newBrand = new Brand({ ...req.body, img: req.file.path });
+
     const savedBrand = await newBrand.save();
 
     return res.status(201).json({
@@ -94,6 +106,11 @@ const putBrand = async (req, res) => {
         controllerName: 'putBrand',
         action: 'check if brand exists in DB'
       });
+    }
+
+    if (req.file) {
+      deleteCloudinaryImg(brand.img);
+      req.body.img = req.file.path;
     }
 
     const updatedBrand = await Brand.findByIdAndUpdate(id, req.body, {
@@ -132,6 +149,8 @@ const deleteBrand = async (req, res) => {
     }
 
     const deletedBrand = await Brand.findByIdAndDelete(id);
+
+    deleteCloudinaryImg(deletedBrand.img);
 
     return res.status(200).json({
       message: 'brand deleted successfully',

@@ -1,3 +1,4 @@
+const upload = require('../../middlewares/imageUpload');
 const {
   getProducts,
   getProductById,
@@ -15,8 +16,8 @@ productsRouter.get('/animal/:animalType', getProductsByAnimalType);
 productsRouter.get('/brand/:brandId', getProductsByBrand);
 productsRouter.get('/', getProducts);
 
-productsRouter.post('/', postProduct);
-productsRouter.put('/:id', putProduct);
+productsRouter.post('/', [upload.single('img')], postProduct);
+productsRouter.put('/:id', [upload.single('img')], putProduct);
 productsRouter.delete('/:id', deleteProduct);
 
 module.exports = productsRouter;

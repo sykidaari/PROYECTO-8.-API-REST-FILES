@@ -3,6 +3,7 @@ const handleError = require('../../utils/errorHandler');
 const validateProductQuery = require('../../utils/productQueryValidator');
 const Brand = require('../models/brand');
 const Product = require('../models/product');
+const deleteCloudinaryImg = require('../../utils/cloudinaryImgDeleter');
 
 const getProducts = async (req, res) => {
   try {
@@ -125,7 +126,7 @@ const getProductsByBrand = async (req, res) => {
       res,
       error,
       reqType: 'GET',
-      controllerName: 'getProductByBrand',
+      controllerName: 'getProductsByBrand',
       action: 'fetch product with specified brand from DB'
     });
   }
@@ -133,7 +134,18 @@ const getProductsByBrand = async (req, res) => {
 
 const postProduct = async (req, res) => {
   try {
-    const newProduct = new Product(req.body);
+    if (!req.file) {
+      return handleError({
+        res,
+        error: new Error('img is required'),
+        reqType: 'POST',
+        controllerName: 'postProduct',
+        action: 'check if file was uploaded'
+      });
+    }
+
+    const newProduct = new Product({ ...req.body, img: req.file.path });
+
     const savedProduct = await newProduct.save();
 
     const populatedProduct = await savedProduct.populate('brand');
@@ -167,6 +179,11 @@ const putProduct = async (req, res) => {
         controllerName: 'putProduct',
         action: 'check if product exists in DB'
       });
+    }
+
+    if (req.file) {
+      deleteCloudinaryImg(product.img);
+      req.body.img = req.file.path;
     }
 
     const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
@@ -208,6 +225,8 @@ const deleteProduct = async (req, res) => {
     const deletedProduct = await Product.findByIdAndDelete(id).populate(
       'brand'
     );
+
+    deleteCloudinaryImg(deletedProduct.img);
 
     return res.status(200).json({
       message: 'product deleted successfully',

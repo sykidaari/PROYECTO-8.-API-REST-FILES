@@ -9,7 +9,9 @@ const brandSchema = new mongoose.Schema(
       enum: ['economy', 'standard', 'premium'],
       default: 'standard'
     },
-    description: { type: String, required: true }
+    description: { type: String, required: true },
+
+    img: { type: String, required: true }
   },
   { timestamps: true, collection: 'brands' }
 );
