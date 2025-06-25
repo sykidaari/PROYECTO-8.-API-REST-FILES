@@ -13,6 +13,12 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY
 });
 
+console.log(
+  process.env.CLOUDINARY_CLOUD_NAME,
+  process.env.CLOUDINARY_API_SECRET,
+  process.env.CLOUDINARY_API_KEY
+);
+
 app.use(express.json());
 
 connectDB();
