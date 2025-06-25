@@ -19,7 +19,8 @@ const productSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['dry-food', 'wet-food', 'snack', 'toy', 'util']
+      enum: ['dry-food', 'wet-food', 'snack', 'toy', 'util'],
+      required: true
     },
 
     description: { type: String },

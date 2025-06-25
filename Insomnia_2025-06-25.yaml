@@ -1,0 +1,346 @@
+type: collection.insomnia.rest/5.0
+name: My first collection
+meta:
+  id: wrk_0133cd9e9f08440181000ff03f38fb81
+  created: 1750268225358
+  modified: 1750268225358
+collection:
+  - name: brands
+    meta:
+      id: fld_842e583f482d4472b9a5ba8cc9e9e8fa
+      created: 1750268254416
+      modified: 1750268254416
+      sortKey: -1750268254417
+    children:
+      - url: http://localhost:3000/api/v1/brands/6852fa64bf8460c460f38000
+        name: getBrandById
+        meta:
+          id: req_948d590255a743a6b66dbec5fbc199ad
+          created: 1750268225437
+          modified: 1750359375216
+          isPrivate: false
+          sortKey: -1750268265333
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/brands
+        name: getBrands
+        meta:
+          id: req_b633f93969de404eaae0ceb417e43b22
+          created: 1750268267957
+          modified: 1750290810337
+          isPrivate: false
+          sortKey: -1750268265433
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/brands
+        name: postBrand
+        meta:
+          id: req_b39014fd069646f385df742e87d1106f
+          created: 1750268325021
+          modified: 1750856695142
+          isPrivate: false
+          sortKey: -1750268265533
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_d161e630e53d48369fa55079fc662570
+              name: name
+              value: FurFeast
+              disabled: false
+            - id: pair_96b746a843634102a56841927029ae25
+              name: country
+              value: Germany
+              disabled: false
+            - id: pair_48082b5c552245058e63fde89519f443
+              name: tier
+              value: standard
+              disabled: false
+            - id: pair_381cb59675ec46599fc21348788514f2
+              name: description
+              value: good products for all animals
+              disabled: false
+            - id: pair_aee250b0624a4761a3a12870fafd95c5
+              name: img
+              disabled: false
+              type: file
+              fileName: C:\Users\kmika\Downloads\furfeast.png
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/brands/685bf39e17ec3c2518bf71a2
+        name: putBrand
+        meta:
+          id: req_9596732b2a614ab9abdd3ba1db09bb46
+          created: 1750273257754
+          modified: 1750856624275
+          isPrivate: false
+          sortKey: -1750273257754
+        method: PUT
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_4862083015c04de8bb03e5c8c5b191f5
+              name: img
+              disabled: false
+              type: file
+              fileName: C:\Users\kmika\Downloads\catfood.jpg
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/brands/685bf39e17ec3c2518bf71a2
+        name: deleteBrand
+        meta:
+          id: req_de2cfaf5f51f40e09ac09773cb696e93
+          created: 1750273259068
+          modified: 1750856649243
+          isPrivate: false
+          sortKey: -1750273259068
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: products
+    meta:
+      id: fld_995339913af14e519754b6f497ee9f19
+      created: 1750290796987
+      modified: 1750290796987
+      sortKey: -1750290796987
+    children:
+      - url: http://localhost:3000/api/v1/products/685bf502ff2260c36f166c99
+        name: deleteProduct
+        meta:
+          id: req_1ebad2aa8e024874b753eb6c352a1e7b
+          created: 1750290823861
+          modified: 1750857042420
+          isPrivate: false
+          sortKey: -1750290825688
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/products/685bf5aaff2260c36f166ca7
+        name: putProduct
+        meta:
+          id: req_326a8b71775c4408a682adbe8d27bb1a
+          created: 1750290829546
+          modified: 1750857216985
+          isPrivate: false
+          sortKey: -1750290828009.5
+        method: PUT
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_ba04ca9e86d947abb613f50bff77294f
+              name: img
+              disabled: false
+              type: file
+              fileName: C:\Users\kmika\Downloads\harness.jpg
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/products
+        name: postProduct
+        meta:
+          id: req_a59d26c1c211487a8de4aa91ce33d96f
+          created: 1750290830331
+          modified: 1750857126289
+          isPrivate: false
+          sortKey: -1750290830331
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_3944ab21eb8347128bb70a4988b9f9f2
+              name: name
+              value: harness
+              disabled: false
+            - id: pair_dd16ecfaf1c544199c1cb632e3c15215
+              name: animalType
+              value: dog
+              disabled: false
+            - id: pair_1b2a6fb8fea14ab1853db236195082a6
+              name: category
+              value: util
+              disabled: false
+            - id: pair_08d04dfb01d94d088b0976dcdbb390d4
+              name: img
+              disabled: false
+              type: file
+              fileName: C:\Users\kmika\Downloads\dogharness.jpg
+            - id: pair_7b67dd0e8ade436696bc16ee6207c458
+              name: brand
+              value: 685bf3fa17ec3c2518bf71ab
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/products/brand/6852fa64bf8460c460f38062
+        name: getProductsByBrand
+        meta:
+          id: req_eaee71e8fe5a4157a9a7486e6b26c789
+          created: 1750290831319
+          modified: 1750445331847
+          isPrivate: false
+          sortKey: -1750290831319
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/products/animal/cat/?category=snack&ageGroup=adult
+        name: getProductsByAnimalType
+        meta:
+          id: req_61751b3c9fda4b8a960fa65db056a4a4
+          created: 1750290831990
+          modified: 1750447137965
+          isPrivate: false
+          sortKey: -1750290831990
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/products/6855a8f68f85104d14f28120
+        name: getProductById
+        meta:
+          id: req_c8982d9b20fe435999bf903af0385f18
+          created: 1750290832428
+          modified: 1750445178525
+          isPrivate: false
+          sortKey: -1750290832428
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/v1/products
+        name: getProducts
+        meta:
+          id: req_8fc8d65e0d6a4092bac06749a78c097a
+          created: 1750290833027
+          modified: 1750444453434
+          isPrivate: false
+          sortKey: -1750290833027
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_1631ac5cf0162e83abba9551f09665f6cc4b4621
+    created: 1750268225365
+    modified: 1750268225365
+environments:
+  name: Base Environment
+  meta:
+    id: env_1631ac5cf0162e83abba9551f09665f6cc4b4621
+    created: 1750268225364
+    modified: 1750268225364
+    isPrivate: false
